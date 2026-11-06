@@ -1,0 +1,195 @@
+:root,
+[data-theme='light'] {
+  /* Light Mode — Editorial Royal Daylight */
+  --bg-outer-frame: #1556D5;
+  --bg-canvas: #FCFAF2;
+  --bg-surface: #E7E9EE;
+  --bg-elevated: #FFFFFF;
+  --bg-glass: rgba(252, 250, 242, 0.88);
+
+  --text-primary: #1D2430;
+  --text-secondary: #525966;
+  --text-muted: #6E7685;
+  --text-on-accent: #FCFAF2;
+
+  --accent-primary: #1556D5;
+  --accent-hover: #0F44B0;
+  --accent-subtle: rgba(21, 86, 213, 0.09);
+  --Hero-display-color: #1556D5;
+  --Hero-front-fill: #1556D5;
+  --Hero-front-shadow: 0 8px 28px rgba(252, 250, 242, 0.28);
+
+  --border-hairline: rgba(29, 36, 48, 0.12);
+  --border-strong: rgba(21, 86, 213, 0.28);
+  --focus-ring: #1556D5;
+
+  /* Portrait lighting tokens (Light mode) */
+  --portrait-silhouette-base: #1D2430;
+  --portrait-silhouette-mid: #283346;
+  --portrait-silhouette-highlight: #1556D5;
+  --portrait-filter: contrast(1.02) saturate(0.98)
+    drop-shadow(0 16px 32px rgba(21, 86, 213, 0.11));
+
+  /* Sidebar & Workspace tokens */
+  --sidebar-bg: #E7E9EE;
+  --workspace-canvas: #FCFAF2;
+  --shadow-subtle: 0 12px 32px -12px rgba(21, 86, 213, 0.14);
+}
+
+[data-theme='dark'] {
+  /* Dark Mode — Minimalist Experimental Studio */
+  --bg-outer-frame: #07080A;
+  --bg-canvas: #0C0D10;
+  --bg-surface: #14161B;
+  --bg-elevated: #1B1E25;
+  --bg-glass: rgba(12, 13, 16, 0.88);
+
+  --text-primary: #F5F6F8;
+  --text-secondary: #A9ADB8;
+  --text-muted: #737987;
+  --text-on-accent: #0C0D10;
+
+  --accent-primary: #7EA8FF;
+  --accent-hover: #9BBCFF;
+  --accent-subtle: rgba(126, 168, 255, 0.12);
+  --Hero-display-color: #F5F6F8;
+  --Hero-front-fill: #F5F6F8;
+  --Hero-front-shadow: 0 10px 32px rgba(7, 8, 10, 0.65);
+
+  --border-hairline: rgba(245, 246, 248, 0.11);
+  --border-strong: rgba(126, 168, 255, 0.32);
+  --focus-ring: #7EA8FF;
+
+  /* Portrait lighting tokens (Dark mode) */
+  --portrait-silhouette-base: #151821;
+  --portrait-silhouette-mid: #202634;
+  --portrait-silhouette-highlight: #7EA8FF;
+  --portrait-filter: contrast(1.05) brightness(0.96) saturate(0.96)
+    drop-shadow(0 18px 38px rgba(0, 0, 0, 0.62));
+
+  /* Sidebar & Workspace tokens */
+  --sidebar-bg: #14161B;
+  --workspace-canvas: #0C0D10;
+  --shadow-subtle: 0 16px 40px -12px rgba(0, 0, 0, 0.55);
+}
+
+:root {
+  --font-display: 'Syne', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC',
+    'Source Han Sans SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+
+  --frame-inset: 14px;
+  --canvas-radius: 14px;
+  --transition-theme: background-color 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    fill 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    stroke 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[lang='zh-CN'] {
+  line-height: 1.65;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--bg-outer-frame);
+  color: var(--text-primary);
+  transition: var(--transition-theme);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: var(--bg-outer-frame);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: var(--transition-theme);
+}
+
+/* Accessible keyboard focus */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 24px;
+  z-index: 9999;
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: top 180ms ease;
+}
+
+.skip-link:focus-visible {
+  top: 20px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --frame-inset: 8px;
+    --canvas-radius: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 120ms !important;
+  }
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jianshuo Liu (刘建硕) — UI/UX & Interaction Designer. Designing meaningful interactions across games and digital products."
+    />
+    <meta name="theme-color" content="#1556D5" />
+    <title>Jianshuo Liu — UI/UX &amp; Interaction Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var storedTheme = localStorage.getItem('jianshuo_theme_v1');
+          var prefersDark =
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme =
+            storedTheme === 'light' || storedTheme === 'dark'
+              ? storedTheme
+              : prefersDark
+                ? 'dark'
+                : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.style.colorScheme = theme;
+
+          // Language strictly defaults to English ('en') for first-time visitors
+          var storedLang = localStorage.getItem('jianshuo_lang_v1');
+          var lang = storedLang === 'zh-CN' ? 'zh-CN' : 'en';
+          document.documentElement.setAttribute('lang', lang);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.setAttribute('lang', 'en');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

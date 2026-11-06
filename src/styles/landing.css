@@ -1,0 +1,964 @@
+/* Outer architectural frame & inset editorial canvas */
+.portfolio-shell {
+  min-height: 100dvh;
+  padding: var(--frame-inset);
+  background-color: var(--bg-outer-frame);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-theme);
+}
+
+.editorial-canvas {
+  position: relative;
+  flex: 1;
+  min-height: calc(100dvh - (var(--frame-inset) * 2));
+  background-color: var(--bg-canvas);
+  border-radius: var(--canvas-radius);
+  border: 1px solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: var(--transition-theme);
+}
+
+/* Top Navigation */
+.top-nav {
+  position: relative;
+  z-index: 50;
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-canvas);
+  transition: var(--transition-theme);
+}
+
+.top-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  gap: 16px;
+}
+
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  min-width: 0;
+}
+
+.nav-brand-name {
+  white-space: nowrap;
+}
+
+.nav-brand-mark {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: var(--accent-primary);
+  display: inline-block;
+  flex-shrink: 0;
+  transition: var(--transition-theme);
+}
+
+.nav-brand-zh {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  background-color: var(--accent-subtle);
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.nav-brand-role {
+  color: var(--text-secondary);
+  font-weight: 400;
+  padding-left: 12px;
+  border-left: 1px solid var(--border-hairline);
+  white-space: nowrap;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-link-btn {
+  position: relative;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 6px 2px;
+  transition: color 200ms ease;
+}
+
+.nav-link-btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background-color: var(--accent-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link-btn:hover,
+.nav-link-btn:focus-visible {
+  color: var(--text-primary);
+}
+
+.nav-link-btn:hover::after,
+.nav-link-btn[aria-current='page']::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-utility-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Accessible EN / 中文 Language Switcher */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px 5px;
+  border-radius: 6px;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-surface);
+  transition: var(--transition-theme);
+}
+
+.lang-switcher:hover {
+  border-color: var(--border-strong);
+}
+
+.lang-option-btn {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.78125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text-secondary);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.lang-option-btn:hover {
+  color: var(--text-primary);
+}
+
+.lang-option-btn.is-active {
+  background-color: var(--accent-primary);
+  color: var(--text-on-accent);
+}
+
+.lang-divider {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  user-select: none;
+  padding: 0 1px;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  border-radius: 6px;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition: var(--transition-theme), transform 160ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--border-strong);
+}
+
+.theme-toggle:active {
+  transform: scale(0.98);
+}
+
+.theme-toggle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-primary);
+  flex-shrink: 0;
+  transition: var(--transition-theme);
+}
+
+.theme-label-compact {
+  display: none;
+}
+
+/* Mobile-only Navigation Controls (hidden on desktop) */
+.mobile-menu-toggle,
+.mobile-nav-drawer,
+.mobile-identity-header,
+.mobile-cta-group {
+  display: none;
+}
+
+/* ==========================================================================
+   Central Hero Stage — True Two-Column Left / Right Desktop Composition
+   - LEFT ZONE (~44%): Vertically centred [Portrait] + [Focus Disciplines & Intro]
+     with 28–40px horizontal spacing, anchored on the left side of the Hero.
+     No oversized typography sits above this left zone.
+   - RIGHT ZONE (~56%): Coherent editorial typographic lockup with "JIANSHUO"
+     in the upper part of the right zone and "LIU" in the lower part of the right zone.
+   ========================================================================== */
+.hero-stage {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  padding: 24px 40px;
+  min-height: 500px;
+}
+
+.hero-composition {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
+  align-items: center;
+  column-gap: clamp(24px, 2.8vw, 44px);
+  min-height: 480px;
+  user-select: none;
+}
+
+/* LEFT ZONE (~44%): Vertically centred [Portrait] [Focus Disciplines + Intro] */
+.hero-left-zone {
+  grid-column: 1;
+  align-self: center;
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(28px, 2.4vw, 36px);
+  width: 100%;
+  position: relative;
+  z-index: 25;
+}
+
+/* Portrait Layer inside .hero-left-zone */
+.hero-portrait-layer {
+  position: relative;
+  z-index: 20;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+/* Portrait Figure Container — Preserves transparent cutout & 746/1052 proportions */
+.portrait-stage-box {
+  position: relative;
+  width: clamp(205px, 16.5vw, 256px);
+  aspect-ratio: 746 / 1052;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.portrait-figure-wrap {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  filter: var(--portrait-filter);
+  transition: filter 360ms ease;
+}
+
+.portrait-real-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+}
+
+.portrait-silhouette-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* Cohesive Focus Disciplines + Personal Introduction Stack inside .hero-left-zone */
+.hero-editorial-left {
+  align-self: center;
+  z-index: 35;
+  flex: 1 1 220px;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-focus-inline-block {
+  text-align: left;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.hero-focus-heading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.hero-focus-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.84375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.hero-intro-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-identity-zh-label {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.hero-role-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.hero-intro-copy {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 30ch;
+}
+
+/* RIGHT ZONE (~56%): Coherent Typographic Composition (JIANSHUO upper, LIU lower) */
+.hero-right-zone {
+  grid-column: 2;
+  align-self: center;
+  justify-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 4.5vh, 54px);
+  width: 100%;
+  position: relative;
+  z-index: 20;
+  pointer-events: none;
+  
+}
+
+/* Upper Part of Right Zone: "JIANSHUO" */
+.hero-type-back-layer {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  pointer-events: none;
+  margin-left: -190px;
+}
+
+.hero-semantic-heading {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  margin: 0;
+}
+
+/* Lower Part of Right Zone: "LIU" */
+.hero-type-front-layer {
+  position: relative;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  pointer-events: none;
+  margin-left: -100px;
+}
+
+.hero-front-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+}
+
+.oversized-name-row {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  transition: var(--transition-theme);
+  white-space: nowrap;
+}
+
+/* "JIANSHUO" sized to fill the upper part of the ~56% Right Zone cleanly without overflowing */
+.oversized-name-first {
+  font-size: clamp(2.75rem, 7.6vw, 7.2rem);
+  color: var(--Hero-display-color);
+  align-self: flex-start;
+}
+
+/* "LIU" anchored in the lower-right of the Right Zone */
+.oversized-name-last {
+  font-size: clamp(4.2rem, 11.8vw, 11.2rem);
+  color: var(--Hero-front-fill);
+  align-self: flex-end;
+  margin-right: 2%;
+  text-shadow: var(--Hero-front-shadow);
+}
+
+/* Bottom Action & Selected Projects Bar */
+.hero-bottom-bar {
+  position: relative;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 40px 36px;
+  border-top: 1px solid var(--border-hairline);
+  background-color: var(--bg-canvas);
+  transition: var(--transition-theme);
+}
+
+.hero-meta-cluster {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-meta-item strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.hero-cta-cluster {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-primary-enter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 13px 26px;
+  border-radius: 8px;
+  background-color: var(--accent-primary);
+  color: var(--text-on-accent);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: background-color 200ms ease, transform 180ms ease, box-shadow 200ms ease;
+  box-shadow: var(--shadow-subtle);
+}
+
+.btn-primary-enter:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary-enter:active {
+  transform: translateY(0);
+}
+
+.btn-primary-enter[disabled] {
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.btn-secondary-work {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background-color: transparent;
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.btn-secondary-work:hover {
+  background-color: var(--accent-subtle);
+}
+
+/* ==========================================================================
+   Tablet Adaptation (769px – 1080px, including 768×1024 iPad Portrait)
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .top-nav-bar {
+    padding: 18px 26px;
+  }
+
+  .nav-brand-role {
+    display: none;
+  }
+
+  .hero-stage {
+    padding: 20px 26px;
+    min-height: 480px;
+  }
+
+  .hero-composition {
+    grid-template-columns: minmax(0, 46fr) minmax(0, 54fr);
+    column-gap: 20px;
+    min-height: 460px;
+  }
+
+  .hero-left-zone {
+    gap: 20px;
+  }
+
+  .portrait-stage-box {
+    width: clamp(175px, 19vw, 220px);
+  }
+
+  .hero-editorial-left {
+    max-width: 240px;
+  }
+
+  .oversized-name-first {
+    font-size: clamp(2.35rem, 7.1vw, 4.8rem);
+  }
+
+  .oversized-name-last {
+    font-size: clamp(3.4rem, 10.5vw, 7.2rem);
+  }
+
+  .hero-bottom-bar {
+    padding: 20px 26px 24px;
+  }
+}
+
+/* ==========================================================================
+   Mobile Art-Directed Layout (<= 768px: 320px, 375px, 390px, 440px iPhone 16 Pro Max)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .portfolio-shell {
+    padding: 8px;
+    min-height: 100dvh;
+  }
+
+  .editorial-canvas {
+    min-height: calc(100dvh - 16px);
+    justify-content: flex-start;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  /* 1. Compact Mobile Navigation Bar */
+  .top-nav-bar {
+    padding: 12px 14px;
+    gap: 8px;
+  }
+
+  .nav-brand {
+    font-size: 0.875rem;
+    gap: 7px;
+  }
+
+  .nav-brand-mark {
+    width: 8px;
+    height: 8px;
+  }
+
+  .nav-brand-zh {
+    font-size: 0.75rem;
+    padding: 1px 6px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-utility-controls {
+    gap: 6px;
+  }
+
+  .lang-switcher {
+    padding: 2px 4px;
+  }
+
+  .lang-option-btn {
+    padding: 5px 7px;
+    font-size: 0.75rem;
+    min-height: 30px;
+  }
+
+  .theme-toggle {
+    padding: 6px 9px;
+    min-height: 36px;
+    gap: 6px;
+    font-size: 0.75rem;
+  }
+
+  .theme-label-full {
+    display: none;
+  }
+
+  .theme-label-compact {
+    display: inline;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    min-height: 36px;
+    border-radius: 6px;
+    border: 1px solid var(--border-hairline);
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: var(--transition-theme);
+  }
+
+  .mobile-menu-icon {
+    width: 14px;
+    height: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .menu-bar {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--text-primary);
+    border-radius: 1px;
+    transition: transform 200ms ease;
+  }
+
+  .menu-bar.is-open-1 {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  .menu-bar.is-open-2 {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  .mobile-nav-drawer {
+    display: block;
+    border-top: 1px solid var(--border-hairline);
+    background-color: var(--bg-elevated);
+    padding: 8px 14px 12px;
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobile-nav-item {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: background-color 160ms ease;
+  }
+
+  .mobile-nav-item:hover,
+  .mobile-nav-item:focus-visible {
+    background-color: var(--accent-subtle);
+  }
+
+  .mobile-nav-meta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  /* 2. Mobile Hero Stage & Deliberate Stacked Composition */
+  .hero-stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 14px 16px 12px;
+    gap: 12px;
+    min-height: 0;
+  }
+
+  .mobile-identity-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-identity-row {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .mobile-role-pill {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: -0.01em;
+  }
+
+  .mobile-zh-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    background-color: var(--accent-subtle);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .hero-composition {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(275px, 38dvh) auto auto;
+    align-items: stretch;
+    gap: 14px;
+    min-height: 0;
+    flex: 1;
+  }
+
+  .hero-left-zone,
+  .hero-right-zone {
+    display: contents;
+  }
+
+  .hero-type-back-layer {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: stretch;
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 6px;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .hero-portrait-layer {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    align-self: end;
+    margin-left: 2%;
+    padding-top: 22px;
+  }
+
+  .hero-type-front-layer {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: stretch;
+    width: 100%;
+    justify-content: flex-end;
+    padding-bottom: 24px;
+  }
+
+  .portrait-stage-box {
+    width: clamp(175px, 44vw, 215px);
+    aspect-ratio: 746 / 1052;
+  }
+
+  .portrait-real-img {
+    margin-left: 0;
+    object-fit: contain;
+    object-position: bottom center;
+  }
+
+  .oversized-name-first {
+    font-size: clamp(1.68rem, 10vw, 2.85rem);
+    letter-spacing: -0.044em;
+    align-self: flex-start;
+    margin-left: 0;
+  }
+
+  .oversized-name-last {
+    font-size: clamp(2.85rem, 16.5vw, 4.35rem);
+    letter-spacing: -0.04em;
+    align-self: flex-end;
+    margin-right: 2%;
+  }
+
+  /* Cohesive Focus Disciplines + Intro Stack on Mobile */
+  .hero-editorial-left {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+    gap: 12px;
+    z-index: 35;
+  }
+
+  .hero-focus-inline-block {
+    padding-bottom: 10px;
+  }
+
+  .hero-focus-heading {
+    font-size: 0.7rem;
+    margin-bottom: 6px;
+  }
+
+  .hero-focus-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+  }
+
+  .hero-focus-list li {
+    font-size: 0.75rem;
+    background-color: var(--bg-surface);
+    padding: 3px 9px;
+    border-radius: 4px;
+    color: var(--text-secondary);
+  }
+
+  .hero-editorial-left .hero-role-title,
+  .hero-editorial-left .hero-identity-zh-label {
+    display: none;
+  }
+
+  .hero-intro-copy {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text-primary);
+    font-weight: 500;
+    max-width: 46ch;
+  }
+
+  /* Prominent Primary & Secondary CTAs */
+  .mobile-cta-group {
+    grid-column: 1;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .mobile-cta-group .btn-primary-enter,
+  .mobile-cta-group .btn-secondary-work {
+    min-height: 46px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .hero-bottom-bar {
+    padding: 10px 16px max(12px, env(safe-area-inset-bottom));
+  }
+
+  .hero-bottom-bar .hero-cta-cluster {
+    display: none;
+  }
+
+  .hero-meta-cluster {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Extra-small Mobile Viewport Safeguard (320×568 iPhone SE) */
+@media (max-width: 359px) {
+  .top-nav-bar {
+    padding: 10px 10px;
+  }
+
+  .nav-brand-zh {
+    display: none;
+  }
+
+  .mobile-menu-text {
+    display: none;
+  }
+
+  .oversized-name-first {
+    font-size: clamp(1.48rem, 9.6vw, 1.95rem);
+  }
+
+  .oversized-name-last {
+    font-size: clamp(2.3rem, 15.5vw, 3.1rem);
+  }
+
+  .portrait-stage-box {
+    width: 155px;
+  }
+
+  .mobile-cta-group {
+    grid-template-columns: 1fr;
+  }
+}
