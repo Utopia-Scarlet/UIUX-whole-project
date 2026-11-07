@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1600, initial-scale=1.0" />
+  <title>Jianshuo Liu 刘建硕 — Visual UI/UX Portfolio (2026)</title>
+  <style>
+    @page {
+      size: 1600px 900px;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    :root {
+      /* Paper & Ink Editorial Palette */
+      --paper-bg: #F3EFE7;
+      --paper-deep: #E8E2D5;
+      --paper-card: #FAF7F2;
+      --ink-primary: #141413;
+      --ink-secondary: #4A4843;
+      --ink-muted: #78746C;
+      --ink-line: rgba(20, 20, 19, 0.14);
+      --ink-line-strong: rgba(20, 20, 19, 0.26);
+      --gold-editorial: #8B6E3B;
+
+      /* ZERO//LINE Tactical Charcoal & Sage Green */
+      --zl-bg: #0D110F;
+      --zl-surface: #141A17;
+      --zl-sage: #6E8F7A;
+      --zl-sage-bright: #8FB39D;
+      --zl-crimson: #C84B31;
+      --zl-text: #ECEFE9;
+      --zl-muted: #98A39B;
+      --zl-line: rgba(143, 179, 157, 0.24);
+
+      /* LoveStory Dark Archive & Champagne Gold */
+      --ls-bg: #10110F;
+      --ls-surface: #171815;
+      --ls-mount: #20211E;
+      --ls-gold: #B79A62;
+      --ls-gold-bright: #C8AD75;
+      --ls-text: #E8E3D8;
+      --ls-muted: #9D9A91;
+      --ls-line: rgba(200, 173, 117, 0.25);
+
+      /* TrueType/OpenType CJK Stacks for compact CIDFontType2 PDF embedding */
+      --font-serif: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', 'Songti SC', 'STSong', serif;
+      --font-sans: 'Inter', 'Helvetica Neue', 'STHeiti', 'Heiti SC', 'Hiragino Sans GB', sans-serif;
+      --font-mono: 'SF Mono', 'Menlo', monospace;
+    }
+
+    html, body {
+      width: 1600px;
+      background: #10110F;
+      font-family: var(--font-sans);
+      color: var(--ink-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .pdf-page {
+      width: 1600px;
+      height: 900px;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px 48px 22px;
+    }
+
+    .pdf-page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    .theme-paper {
+      background-color: var(--paper-bg);
+      color: var(--ink-primary);
+    }
+
+    .theme-zl {
+      background-color: var(--zl-bg);
+      color: var(--zl-text);
+    }
+
+    .theme-ls-dark {
+      background-color: var(--ls-bg);
+      color: var(--ls-text);
+    }
+
+    /* Compact Header Bar (1 headline + at most 1 short sentence, never overlapping) */
+    .visual-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 11px;
+      border-bottom: 1px solid var(--ink-line);
+      flex-shrink: 0;
+    }
+
+    .theme-zl .visual-header {
+      border-bottom-color: var(--zl-line);
+    }
+
+    .theme-ls-dark .visual-header {
+      border-bottom-color: var(--ls-line);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .label-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border-radius: 999px;
+      border: 1px solid currentColor;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .theme-paper .label-pill {
+      color: var(--gold-editorial);
+      background: rgba(139, 110, 59, 0.08);
+    }
+
+    .theme-zl .label-pill {
+      color: var(--zl-sage-bright);
+      border-color: rgba(143, 179, 157, 0.45);
+      background: rgba(110, 143, 122, 0.14);
+      border-radius: 3px;
+    }
+
+    .theme-ls-dark .label-pill {
+      color: var(--ls-gold-bright);
+      border-color: rgba(200, 173, 117, 0.42);
+      background: rgba(183, 154, 98, 0.12);
+    }
+
+    .page-headline {
+      font-family: var(--font-serif);
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+
+    .theme-zl .page-headline {
+      font-family: var(--font-sans);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    .page-one-liner {
+      font-size: 12.5px;
+      opacity: 0.84;
+      text-align: right;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Minimal Footer Bar */
+    .visual-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px solid var(--ink-line);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      opacity: 0.76;
+      flex-shrink: 0;
+    }
+
+    .theme-zl .visual-footer {
+      border-top-color: var(--zl-line);
+    }
+
+    .theme-ls-dark .visual-footer {
+      border-top-color: var(--ls-line);
+    }
+
+    .footer-link {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Dominant Visual Frame (78-85% of canvas) */
+    .shot-card {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: #0D0E0D;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      position: relative;
+    }
+
+    .theme-paper .shot-card {
+      border-color: rgba(20, 20, 19, 0.22);
+    }
+
+    .theme-zl .shot-card {
+      border-radius: 4px;
+      border-color: rgba(143, 179, 157, 0.34);
+    }
+
+    .theme-ls-dark .shot-card {
+      border-color: rgba(200, 173, 117, 0.34);
+    }
+
+    .shot-bar {
+      padding: 6px 14px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: #171815;
+      color: var(--ls-gold-bright);
+      border-bottom: 1px solid rgba(200, 173, 117, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .theme-zl .shot-bar {
+      background: #131916;
+      color: var(--zl-sage-bright);
+      border-bottom-color: rgba(143, 179, 157, 0.25);
+    }
+
+    .shot-bar span.sub {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      opacity: 0.86;
+      letter-spacing: 0.01em;
+    }
+
+    .shot-media {
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      background: #0D0E0D;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====================================================================
+       PAGE 01 — COVER
+       ==================================================================== -->
+  <section class="pdf-page theme-paper" id="page-01">
+    <header class="visual-header">
+      <div class="header-left">
+        <span class="label-pill">SELECTED WORKS · 2026</span>
+        <span style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.08em;color:var(--ink-secondary);">UI/UX &amp; INTERACTION DESIGN PORTFOLIO</span>
+      </div>
+      <div class="page-one-liner" style="font-family:var(--font-mono);font-size:11.5px;">
+        <a href="https://utopia-scarlet.github.io/UIUX-whole-project/" class="footer-link">utopia-scarlet.github.io/UIUX-whole-project ↗</a>
+      </div>
+    </header>
+
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:0.35fr 0.65fr;gap:36px;align-items:stretch;margin:14px 0;">
+      <!-- Left Minimal Identity Spine -->
+      <div style="display:flex;flex-direction:column;justify-content:space-between;padding:18px 0 8px;">
+        <div>
+          <span style="font-family:var(--font-mono);font-size:11.5px;font-weight:600;letter-spacing:0.16em;color:var(--gold-editorial);display:block;margin-bottom:18px;">
+            PORTFOLIO ARCHIVE · 2026
+          </span>
+          <h1 style="font-family:var(--font-serif);font-size:78px;font-weight:500;line-height:0.94;letter-spacing:-0.02em;color:var(--ink-primary);">
+            JIANSHUO<br />LIU
+          </h1>
+          <div style="font-family:var(--font-serif);font-size:28px;color:var(--ink-secondary);margin-top:14px;letter-spacing:0.08em;">
+            刘建硕
+          </div>
+
+          <div style="margin-top:28px;padding-left:16px;border-left:2.5px solid var(--gold-editorial);">
+            <div style="font-size:20px;font-weight:600;color:var(--ink-primary);margin-bottom:6px;">
+              UI/UX &amp; Interaction Designer
+            </div>
+            <div style="font-size:13.5px;color:var(--ink-secondary);line-height:1.5;">
+              Visual Identity · Interactive Prototypes · Design Systems
+            </div>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--ink-line-strong);padding-top:16px;display:flex;flex-direction:column;gap:8px;font-family:var(--font-mono);font-size:11.5px;">
+          <div style="display:flex;justify-content:space-between;">
+            <span style="color:var(--ink-muted);">01 // ZERO//LINE</span>
+            <span>Tactical Concept Website · P.02–03</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="color:var(--ink-muted);">02 // LoveStory</span>
+            <span>Shared Memory Archive · P.04–08</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding-top:6px;border-top:1px dashed var(--ink-line);">
+            <span style="color:var(--ink-muted);">ONLINE PORTFOLIO</span>
+            <a href="https://utopia-scarlet.github.io/UIUX-whole-project/" class="footer-link" style="color:var(--gold-editorial);font-weight:600;">Interactive Case Studies ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Dominant Dual Project Previews -->
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:16px;min-height:0;">
+        <a href="https://utopia-scarlet.github.io/ZERO-LINE/" class="shot-card" style="border-color:rgba(20,20,19,0.28);">
+          <div class="shot-bar" style="background:#131916;color:#8FB39D;">
+            <span>01 // ZERO//LINE — TACTICAL CONCEPT WEBSITE</span>
+            <span class="sub">Visual Identity &amp; Match-Cut Slash Interaction ↗</span>
+          </div>
+          <img src="./assets/zl-home.jpg" alt="ZERO//LINE Hero Preview" class="shot-media" style="object-fit:cover;object-position:center top;" />
+        </a>
+
+        <a href="https://love-story-archive-production.up.railway.app" class="shot-card" style="border-color:rgba(20,20,19,0.28);">
+          <div class="shot-bar">
+            <span>02 // LOVESTORY — SHARED MEMORY ARCHIVE</span>
+            <span class="sub">Spatial Hub · Timeline × Globe · Dual-Surface System ↗</span>
+          </div>
+          <img src="./assets/ls-hub-dark.jpg" alt="LoveStory Spatial Hub Preview" class="shot-media" style="object-fit:cover;object-position:center top;" />
+        </a>
+      </div>
+    </div>
+
+    <footer class="visual-footer">
+      <span>JIANSHUO LIU 刘建硕 · 13604797719@163.com · 13604797719</span>
+      <span>01 / 08</span>
+    </footer>
+  </section>
+
+  <!-- ====================================================================
+       PAGE 02 — ZERO//LINE VISUAL IDENTITY
+       ==================================================================== -->
+  <section class="pdf-page theme-zl" id="page-02">
+    <header class="visual-header">
+      <div class="header-left">
+        <span class="label-pill">Visual Identity</span>
+        <h2 class="page-headline">ZERO//LINE — 角色主导的战术竞技视觉识别</h2>
+      </div>
+      <p class="page-one-liner">
+        以深炭灰 (#0D100E) 与鼠尾草战术绿 (#6E8F7A) 取代刺眼霓虹，聚焦五人小队纵深构图与首屏主入口。
+      </p>
+    </header>
+
+    <!-- Dominant Hero Visual (~83% of canvas) -->
+    <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;margin:11px 0;">
+      <div class="shot-card" style="flex:1;min-height:0;">
+        <div class="shot-bar">
+          <span>ZERO//LINE · HOMEPAGE HERO INTERFACE (1440 × 900)</span>
+          <span class="sub">Character-Led Asymmetric Composition · Slashed Display Wordmark · Minimal 5-Module HUD</span>
+        </div>
+        <img src="./assets/zl-home.jpg" alt="ZERO//LINE Homepage Visual Identity" class="shot-media" />
+      </div>
+
+      <!-- Compact Integrated 2-Annotation + Colour Swatch Bar -->
+      <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:center;background:var(--zl-surface);border:1px solid var(--zl-line);padding:9px 16px;border-radius:4px;flex-shrink:0;">
+        <div style="font-size:12px;">
+          <strong style="color:var(--zl-sage-bright);font-family:var(--font-mono);margin-right:8px;">01 · 角色纵深引导</strong>
+          <span style="color:var(--zl-muted);">右侧五人小队视线汇聚至左侧 <code>BREAK // THE LINE</code> 与象牙白主按钮</span>
+        </div>
+        <div style="font-size:12px;">
+          <strong style="color:var(--zl-sage-bright);font-family:var(--font-mono);margin-right:8px;">02 · 极简战术 HUD</strong>
+          <span style="color:var(--zl-muted);">顶部五模块导航 + 右侧 <code>01–05</code> 菱形锚点，零冗余弹窗干扰</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10.5px;">
+          <span style="display:inline-flex;align-items:center;gap:5px;padding:3px 8px;background:#0D100E;border:1px solid rgba(255,255,255,0.2);border-radius:3px;">#0D100E</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;padding:3px 8px;background:#1A221E;border:1px solid rgba(255,255,255,0.2);border-radius:3px;">#1A221E</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;padding:3px 8px;background:#6E8F7A;color:#0D100E;font-weight:700;border-radius:3px;">#6E8F7A</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;padding:3px 8px;background:#C84B31;color:#FFFFFF;font-weight:700;border-radius:3px;">#C84B31</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;padding:3px 8px;background:#ECEFE9;color:#0D100E;font-weight:700;border-radius:3px;">#ECEFE9</span>
+        </div>
+      </div>
+    </div>
+
+    <footer class="visual-footer">
+      <span>PROJECT 01 · ZERO//LINE — <a href="https://utopia-scarlet.github.io/ZERO-LINE/" class="footer-link">https://utopia-scarlet.github.io/ZERO-LINE/ ↗</a></span>
+      <span>02 / 08</span>
+    </footer>
+  </section>
+
+  <!-- ====================================================================
+       PAGE 03 — ZERO//LINE INTERACTION
+       ==================================================================== -->
+  <section class="pdf-page theme-zl" id="page-03">
+    <header class="visual-header">
+      <div class="header-left">
+        <span class="label-pill">Cinematic Interaction</span>
+        <h2 class="page-headline">四帧拔刀破屏转场与核心模块交互</h2>
+      </div>
+      <p class="page-one-liner">
+        2.2 秒四帧连续拔刀动作无缝切开首屏，配合角色技能检视与三栏商店矩阵构建概念官网闭环。
+      </p>
+    </header>
+
+    <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:14px;margin:11px 0;">
+      <!-- Top Visual Strip: 4-Frame Match-Cut Slash Transition -->
+      <div style="background:var(--zl-surface);border:1px solid var(--zl-line);border-radius:4px;padding:10px 14px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-family:var(--font-mono);font-size:11px;">
+          <span style="color:var(--zl-sage-bright);font-weight:600;">01 · FOUR-FRAME MATCH-CUT SLASH ENTRANCE (2200ms · 拔刀斩击破屏转场)</span>
+          <span style="color:var(--zl-muted);">READY → DRAW → WIND-UP → STRIKE</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+          <div style="position:relative;height:178px;border-radius:4px;overflow:hidden;border:1px solid rgba(143,179,157,0.3);background:#0A0D0C;">
+            <img src="./assets/zl-pose-01.jpg" alt="01 Ready" style="width:100%;height:100%;object-fit:contain;display:block;" />
+            <div style="position:absolute;inset:auto 0 0 0;padding:6px 10px;background:linear-gradient(180deg,transparent,rgba(10,13,12,0.92));display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10.5px;">
+              <strong style="color:#ECEFE9;">01 · READY 持刀蓄势</strong>
+              <span style="color:#8FB39D;">0–350ms</span>
+            </div>
+          </div>
+
+          <div style="position:relative;height:178px;border-radius:4px;overflow:hidden;border:1px solid rgba(143,179,157,0.3);background:#0A0D0C;">
+            <img src="./assets/zl-pose-02.jpg" alt="02 Draw" style="width:100%;height:100%;object-fit:contain;display:block;" />
+            <div style="position:absolute;inset:auto 0 0 0;padding:6px 10px;background:linear-gradient(180deg,transparent,rgba(10,13,12,0.92));display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10.5px;">
+              <strong style="color:#ECEFE9;">02 · DRAW 拔刀出鞘</strong>
+              <span style="color:#8FB39D;">350–850ms</span>
+            </div>
+          </div>
+
+          <div style="position:relative;height:178px;border-radius:4px;overflow:hidden;border:1px solid rgba(143,179,157,0.3);background:#0A0D0C;">
+            <img src="./assets/zl-pose-03.jpg" alt="03 Wind-up" style="width:100%;height:100%;object-fit:contain;display:block;" />
+            <div style="position:absolute;inset:auto 0 0 0;padding:6px 10px;background:linear-gradient(180deg,transparent,rgba(10,13,12,0.92));display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10.5px;">
+              <strong style="color:#ECEFE9;">03 · WIND-UP 旋身聚力</strong>
+              <span style="color:#8FB39D;">850–1350ms</span>
+            </div>
+          </div>
+
+          <div style="position:relative;height:178px;border-radius:4px;overflow:hidden;border:1px solid rgba(200,75,49,0.65);background:#140E0D;">
+            <img src="./assets/zl-pose-04.jpg" alt="04 Strike" style="width:100%;height:100%;object-fit:contain;display:block;" />
+            <div style="position:absolute;inset:auto 0 0 0;padding:6px 10px;background:linear-gradient(180deg,transparent,rgba(20,14,13,0.94));display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10.5px;">
+              <strong style="color:#FFFFFF;">04 · STRIKE 破阵斩击</strong>
+              <span style="color:#E87A64;">1350–2200ms</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Large Dual Interface Stage -->
+      <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;">
+        <div class="shot-card">
+          <div class="shot-bar">
+            <span>02 · HEROES — NOVA SKILL DOSSIER</span>
+            <span class="sub">六边形立绘裁切 · Q/E/R 技能检视 · 底部零跳转角色切换</span>
+          </div>
+          <img src="./assets/zl-heroes.jpg" alt="ZERO//LINE Heroes Interface" class="shot-media" />
+        </div>
+
+        <div class="shot-card">
+          <div class="shot-bar">
+            <span>03 · STORE — THREE-COLUMN COMMERCIAL MATRIX</span>
+            <span class="sub">BUY GAME / GAME CREDITS / ITEM STORE 三栏纵向视觉分流</span>
+          </div>
+          <img src="./assets/zl-store.jpg" alt="ZERO//LINE Store Interface" class="shot-media" />
+        </div>
+      </div>
+    </div>
+
+    <footer class="visual-footer">
+      <span>ZERO//LINE · Interactive Concept Website Showcase — <a href="https://utopia-scarlet.github.io/UIUX-whole-project/#projects/zero-line" class="footer-link">View Interactive Case Study ↗</a></span>
+      <span>03 / 08</span>
+    </footer>
+  </section>
+
+  <!-- ====================================================================
+       PAGE 04 — LOVESTORY PRODUCT EXPERIENCE
+       ==================================================================== -->
+  <section class="pdf-page theme-ls-dark" id="page-04">
+    <header class="visual-header">
+      <div class="header-left">
+        <span class="label-pill">Product Experience</span>
+        <h2 class="page-headline">LoveStory — 围绕 Our Space 构建的双人私密数字记忆馆</h2>
+      </div>
+      <p class="page-one-liner">
+        将共同照片、时间节点、城市坐标与未来心愿编织为桌面与移动端原生适配的双人专属空间。
+      </p>
+    </header>
+
+    <!-- Dominant Visual Stage: Desktop Spatial Hub + Native Mobile Screens -->
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:1.58fr 0.92fr;gap:22px;align-items:stretch;margin:11px 0;">
+      <!-- Left: Full Desktop Spatial Hub -->
+      <div class="shot-card">
+        <div class="shot-bar">
+          <span>01 · OUR SPACE — SPATIAL MEMORY HUB (1440 × 900 · DARK ARCHIVE #10110F)</span>
+          <span class="sub">一屏整合画廊、编年时间轴、正射地球仪、纪念日与未来计划</span>
+        </div>
+        <img src="./assets/ls-hub-dark.jpg" alt="LoveStory Our Space Hub" class="shot-media" />
+      </div>
+
+      <!-- Right: Two Full-Height Native 390x844 Mobile Screens -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;min-height:0;">
+        <div class="shot-card">
+          <div class="shot-bar">
+            <span>02 · MOBILE STORY</span>
+            <span class="sub">390×844 金线记忆流</span>
+          </div>
+          <img src="./assets/ls-mobile-story.jpg" alt="LoveStory Mobile Story Flow" class="shot-media" />
+        </div>
+
+        <div class="shot-card">
+          <div class="shot-bar">
+            <span>03 · 6-STEP COMPOSER</span>
+            <span class="sub">390×844 六步全屏记录</span>
+          </div>
+          <img src="./assets/ls-mobile-composer.jpg" alt="LoveStory Mobile 6-Step Composer" class="shot-media" />
+        </div>
+      </div>
+    </div>
+
+    <footer class="visual-footer">
+      <span>PROJECT 02 · LOVESTORY LIVE PRODUCT — <a href="https://love-story-archive-production.up.railway.app" class="footer-link">https://love-story-archive-production.up.railway.app ↗</a></span>
+      <span>04 / 08</span>
+    </footer>
+  </section>
+
+  <!-- ====================================================================
+       PAGE 05 — LOVESTORY UX DISCOVERY
+       ==================================================================== -->
+  <section class="pdf-page theme-paper" id="page-05">
+    <header class="visual-header">
+      <div class="header-left">
+        <span class="label-pill">UX Discovery</span>
+        <h2 class="page-headline">从公开评论痛点与双人自用观察到产品设计响应</h2>
+      </div>
+      <p class="page-one-liner">
+        结合公开产品社区评论分析与开发期双人实测日志，将碎片化相册痛点转化为以“故事单元”为核心的架构。
+      </p>
+    </header>
+
+    <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:14px;margin:11px 0;">
+      <!-- Clean Visual Chain: Problem → Insight → Design Response -->
+      <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center;flex-shrink:0;">
+        <div style="background:var(--paper-card);border:1px solid var(--ink-line-strong);border-left:3.5px solid var(--gold-editorial);border-radius:6px;padding:10px 14px;">
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--gold-editorial);font-weight:700;display:block;">01 · PROBLEM (现有工具断层)</span>
+          <strong style="font-size:13px;display:block;margin-top:2px;">共享相簿按单文件流堆叠且补录旧照易乱序；聊天流缺乏空间归属</strong>
+        </div>
+
+        <span style="font-family:var(--font-mono);font-size:18px;color:var(--gold-editorial);font-weight:700;">→</span>
+
+        <div style="background:var(--paper-card);border:1px solid var(--ink-line-strong);border-left:3.5px solid var(--gold-editorial);border-radius:6px;padding:10px 14px;">
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--gold-editorial);font-weight:700;display:block;">02 · UX INSIGHT (核心洞察)</span>
+          <strong style="font-size:13px;display:block;margin-top:2px;">伴侣按“一次共同经历（日期 + 城市 + 故事）”重温往事，且需明确可见性边界</strong>
+        </div>
+
+        <span style="font-family:var(--font-mono);font-size:18px;color:var(--gold-editorial);font-weight:700;">→</span>
+
+        <div style="background:#151613;color:#E8E3D8;border:1px solid var(--ls-gold);border-left:3.5px solid var(--ls-gold-bright);border-radius:6px;padding:10px 14px;">
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--ls-gold-bright);font-weight:700;display:block;">03 · DESIGN RESPONSE (设计响应)</span>
+          <strong style="font-size:13px;display:block;margin-top:2px;color:#FFFFFF;">构建多图故事单元、YYYY-MM-DD 事件时间轴×地球仪联动与共享空间状态抽屉</strong>
+        </div>
+      </div>
+
+      <!-- Dominant Equal-Width Visual Evidence Stage -->
+      <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;">
+        <div class="shot-card">
+          <div class="shot-bar">
+            <span>01 · PUBLIC SECONDARY RESEARCH — APPLE SHARED ALBUMS VS. LOVESTORY</span>
+            <span class="sub">单文件照片流 vs. 多图故事单元</span>
+          </div>
+          <img src="./assets/ls-comp-01.jpg" alt="Apple Shared Albums vs LoveStory Exhibit" class="shot-media" />
+        </div>
+
+        <div class="shot-card">
+          <div class="shot-bar">
+            <span>02 · FIRSTHAND DOGFOODING RESPONSE — SHARED SPACE DRAWER</span>
+            <span class="sub">显式标注 Our Story · 2 MEMBERS · CURRENT</span>
+          </div>
+          <img src="./assets/ls-shared-space.jpg" alt="Our Story Shared Space Status Drawer" class="shot-media" />
+        </div>
+      </div>
+    </div>
+
+    <footer class="visual-footer">
+      <span>LOVESTORY UX DISCOVERY · Full 5-Node Interactive Research Canvas — <a href="https://utopia-scarlet.github.io/UIUX-whole-project/#projects/lovestory" class="footer-link">Explore on Portfolio Website ↗</a></span>
+      <span>05 / 08</span>
+    </footer>
+  </section>
+
+  <!-- ====================================================================
+       PAGE 06 — LOVESTORY MEMORY GALLERY
+       ==================================================================== -->
+  <section class="pdf-page theme-ls-dark" id="page-06">
+    <header class="visual-header">
+      <div class="header-left">
+        <span class="label-pill">Gallery → Detail</span>
+        <h2 class="page-headline">一则记忆一张封面：画廊总览与 #20211E 原色相纸画框</h2>
+      </div>
+      <p class="page-one-liner">
+        外部网格以单封面维持整洁秩序，点击后在 #20211E 中性暗房画框内展开 Print 01/02 切换与地图定位。
+      </p>
+    </header>
+
+    <!-- Dominant Side-by-Side Before / After Interactive Screenshots -->
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin:11px 0;">
+      <div class="shot-card">
+        <div class="shot-bar">
+          <span>Gallery Overview</span>
+          <span class="sub">年份/城市筛选 · 主推里程碑 + 等高单封面网格</span>
+        </div>
+        <img src="./assets/ls-gallery-grid-crop.jpg" alt="Gallery Overview State" class="shot-media" />
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--ls-gold-bright);background:rgba(183,154,98,0.14);border:1px solid rgba(200,173,117,0.4);padding:10px 9px;border-radius:999px;writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:0.12em;">
+          Gallery → Detail
+        </span>
+      </div>
+
+      <div class="shot-card" style="border-color:var(--ls-gold);">
+        <div class="shot-bar">
+          <span>Memory Detail</span>
+          <span class="sub">#20211E 原色相纸画框 · Print 01/02 切换 · Locate on Memory Map ↗</span>
+        </div>
+        <img src="./assets/ls-gallery-expanded-crop.jpg" alt="Expanded Memory Detail State" class="shot-media" />
+      </div>
+    </div>
+
+    <footer class="visual-footer">
+      <span>ARCHIVE 03 · INTERACTIVE MEMORY GALLERY — <a href="https://utopia-scarlet.github.io/UIUX-whole-project/#projects/lovestory" class="footer-link">Try Live Gallery Prototype ↗</a></span>
+      <span>06 / 08</span>
+    </footer>
+  </section>
+
+  <!-- ====================================================================
+       PAGE 07 — LOVESTORY TIMELINE × MAP
+       ==================================================================== -->
+  <section class="pdf-page theme-ls-dark" id="page-07">
+    <header class="visual-header">
+      <div class="header-left">
+        <span class="label-pill">Timeline ↔ Map</span>
+        <h2 class="page-headline">时间与空间双向同步：Timeline ↔ Map ↔ Memory</h2>
+      </div>
+      <p class="page-one-liner">
+        无论是从顶部编年时间轴选择日期，还是在正射地球仪点击城市坐标，三处视图实时联动切换。
+      </p>
+    </header>
+
+    <!-- Dominant Side-by-Side Bidirectional Synchronisation Screenshots -->
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin:11px 0;">
+      <div class="shot-card">
+        <div class="shot-bar">
+          <span>Timeline → Map (2026 MAY 12 · KYOTO)</span>
+          <span class="sub">选中时间轴“京都”节点 → 地球仪同步点亮 34.9977° N, 135.7812° E</span>
+        </div>
+        <img src="./assets/ls-timeline-kyoto-crop.jpg" alt="Timeline to Map Kyoto Sync" class="shot-media" />
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--ls-gold-bright);background:rgba(183,154,98,0.14);border:1px solid rgba(200,173,117,0.4);padding:10px 9px;border-radius:999px;writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:0.12em;">
+          Timeline ↔ Map ↔ Memory
+        </span>
+      </div>
+
+      <div class="shot-card" style="border-color:var(--ls-gold);">
+        <div class="shot-bar">
+          <span>Map → Timeline (30.6698° N · CHENGDU)</span>
+          <span class="sub">点击地球仪“成都”坐标 → 时间轴反向归位 2025 NOV 03 记忆</span>
+        </div>
+        <img src="./assets/ls-timeline-chengdu-crop.jpg" alt="Map to Timeline Chengdu Sync" class="shot-media" />
+      </div>
+    </div>
+
+    <footer class="visual-footer">
+      <span>ARCHIVE 03 · TIMELINE × MEMORY MAP — <a href="https://utopia-scarlet.github.io/UIUX-whole-project/#projects/lovestory" class="footer-link">Try Live Timeline × Globe Prototype ↗</a></span>
+      <span>07 / 08</span>
+    </footer>
+  </section>
+
+  <!-- ====================================================================
+       PAGE 08 — PRIVACY, DESIGN SYSTEM & CONTACT
+       ==================================================================== -->
+  <section class="pdf-page theme-paper" id="page-08">
+    <header class="visual-header">
+      <div class="header-left">
+        <span class="label-pill">Privacy &amp; Design System</span>
+        <h2 class="page-headline">隐私权限边界与双境设计系统</h2>
+      </div>
+      <p class="page-one-liner">
+        四级角色权限保护私密记录，同一套语义化组件无缝适配 Dark Archive (#10110F) 与 Paper &amp; Ink (#F3EFE7)。
+      </p>
+    </header>
+
+    <!-- 3-Column Visual-First Layout:
+         Col 1 (550px): Private Archive Locked -> Viewer Unlocked (exact 1.65:1 aspect fit!)
+         Col 2 (550px): Dark Archive (#10110F) <-> Paper & Ink (#F3EFE7) (exact 1.65:1 aspect fit!)
+         Col 3 (368px): Portfolio Website, Clickable Project Links, Contact & Scannable QR Code -->
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr 368px;gap:18px;align-items:stretch;margin:11px 0;">
+      <!-- Column 1: Private Archive Interaction (Locked -> Unlocked) -->
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:12px;min-height:0;">
+        <div class="shot-card">
+          <div class="shot-bar">
+            <span>01 · Private Archive (Locked)</span>
+            <span class="sub">未解锁前零数量与标题外泄</span>
+          </div>
+          <img src="./assets/ls-private-locked-crop.jpg" alt="Private Archive Locked State" class="shot-media" />
+        </div>
+
+        <div class="shot-card" style="border-color:var(--ls-gold);">
+          <div class="shot-bar">
+            <span>02 · Private Archive (Viewer Read-Only)</span>
+            <span class="sub">四级角色权限与只读保护</span>
+          </div>
+          <img src="./assets/ls-private-unlocked-crop.jpg" alt="Private Archive Unlocked Role State" class="shot-media" />
+        </div>
+      </div>
+
+      <!-- Column 2: Dark Archive vs. Paper & Ink Theme Comparison -->
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:12px;min-height:0;">
+        <div class="shot-card">
+          <div class="shot-bar">
+            <span>03 · Dark Archive (#10110F)</span>
+            <span class="sub">深色馆藏表面与 6 核心色彩令牌</span>
+          </div>
+          <img src="./assets/ls-ds-dark-clean-crop.jpg" alt="Dark Archive Design System Specimen" class="shot-media" />
+        </div>
+
+        <div class="shot-card">
+          <div class="shot-bar">
+            <span>04 · Paper &amp; Ink (#F3EFE7)</span>
+            <span class="sub">浅色纸本表面 (#20211E 画框保持原色)</span>
+          </div>
+          <img src="./assets/ls-ds-paper-clean-crop.jpg" alt="Paper and Ink Design System Specimen" class="shot-media" />
+        </div>
+      </div>
+
+      <!-- Column 3: Compact Final Contact, Clickable Links & Scannable QR Card -->
+      <div style="background:#141513;color:#E8E3D8;border:1.5px solid var(--ls-gold);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+          <span style="font-family:var(--font-mono);font-size:10.5px;color:var(--ls-gold-bright);letter-spacing:0.12em;display:block;margin-bottom:6px;">
+            ONLINE PORTFOLIO &amp; CONTACT
+          </span>
+          <h3 style="font-family:var(--font-serif);font-size:28px;font-weight:500;color:#FFFFFF;line-height:1.1;">
+            JIANSHUO LIU<br />
+            <span style="font-size:20px;color:#C8C3B8;">刘建硕</span>
+          </h3>
+          <div style="font-size:12.5px;color:var(--ls-gold-bright);margin-top:6px;font-weight:600;">
+            UI/UX &amp; Interaction Designer
+          </div>
+        </div>
+
+        <!-- Scannable & Clickable QR Code -->
+        <a href="https://utopia-scarlet.github.io/UIUX-whole-project/" style="background:#FFFFFF;color:#141413;border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:14px;">
+          <img src="./assets/qr-portfolio.svg" alt="Portfolio QR Code" style="width:96px;height:96px;display:block;flex-shrink:0;" />
+          <div>
+            <strong style="font-size:13px;display:block;margin-bottom:3px;">扫码或点击访问作品集</strong>
+            <span style="font-family:var(--font-mono);font-size:10px;color:#4A4843;line-height:1.4;display:block;">
+              支持手机扫码或点击直接打开在线交互作品集 ↗
+            </span>
+          </div>
+        </a>
+
+        <!-- Clickable Live Links -->
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <a href="https://utopia-scarlet.github.io/UIUX-whole-project/" style="background:rgba(183,154,98,0.18);border:1px solid var(--ls-gold-bright);border-radius:7px;padding:9px 12px;display:block;">
+            <span style="font-family:var(--font-mono);font-size:9.5px;color:var(--ls-gold-bright);display:block;">01 · PORTFOLIO WEBSITE (作品集主站)</span>
+            <strong style="font-family:var(--font-mono);font-size:11px;color:#FFFFFF;display:block;margin-top:2px;">utopia-scarlet.github.io/UIUX-whole-project ↗</strong>
+          </a>
+
+          <a href="https://utopia-scarlet.github.io/ZERO-LINE/" style="background:rgba(110,143,122,0.18);border:1px solid var(--zl-sage-bright);border-radius:7px;padding:9px 12px;display:block;">
+            <span style="font-family:var(--font-mono);font-size:9.5px;color:var(--zl-sage-bright);display:block;">02 · ZERO//LINE (战术概念官网)</span>
+            <strong style="font-family:var(--font-mono);font-size:11px;color:#FFFFFF;display:block;margin-top:2px;">utopia-scarlet.github.io/ZERO-LINE ↗</strong>
+          </a>
+
+          <a href="https://love-story-archive-production.up.railway.app" style="background:rgba(232,227,216,0.08);border:1px solid rgba(200,173,117,0.45);border-radius:7px;padding:9px 12px;display:block;">
+            <span style="font-family:var(--font-mono);font-size:9.5px;color:var(--ls-gold-bright);display:block;">03 · LOVESTORY (线上全栈产品)</span>
+            <strong style="font-family:var(--font-mono);font-size:11px;color:#FFFFFF;display:block;margin-top:2px;">love-story-archive-production.up.railway.app ↗</strong>
+          </a>
+        </div>
+
+        <!-- Verified Contact Footer inside Card -->
+        <div style="border-top:1px solid rgba(200,173,117,0.24);padding-top:10px;font-family:var(--font-mono);font-size:11.5px;line-height:1.55;">
+          <div>EMAIL: <a href="mailto:13604797719@163.com" class="footer-link" style="color:#FFFFFF;">13604797719@163.com</a></div>
+          <div style="color:var(--ls-gold-bright);">PHONE: 13604797719</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="visual-footer">
+      <span>SELECTED WORKS IN UI/UX &amp; INTERACTION DESIGN · JIANSHUO LIU 刘建硕 (2026)</span>
+      <span>08 / 08</span>
+    </footer>
+  </section>
+
+</body>
+</html>

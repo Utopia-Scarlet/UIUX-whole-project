@@ -9,6 +9,7 @@ import { CaseStudyView } from './CaseStudyView'
 import { ZeroLineCaseStudy } from './ZeroLineCaseStudy'
 import { ZeroLineBreakTransition } from './ZeroLineBreakTransition'
 import { LoveStoryStandalonePage } from './LoveStoryStandalonePage'
+import { BridgeWorkStandalonePage } from './BridgeWorkStandalonePage'
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -110,6 +111,8 @@ export const PortfolioWorkspace: React.FC<PortfolioWorkspaceProps> = ({
     useState<boolean>(false)
   const [isLoveStoryIntroActive, setIsLoveStoryIntroActive] =
     useState<boolean>(false)
+  const [isBridgeWorkIntroActive, setIsBridgeWorkIntroActive] =
+    useState<boolean>(false)
 
   const sidebarRef = useRef<HTMLElement | null>(null)
   const mainScrollRef = useRef<HTMLDivElement | null>(null)
@@ -127,6 +130,7 @@ export const PortfolioWorkspace: React.FC<PortfolioWorkspaceProps> = ({
   const isProjectView = isProjectDestination(activeNav)
   const isZeroLineWorld = activeNav === 'zero-line'
   const isLoveStoryWorld = activeNav === 'lovestory'
+  const isBridgeWorkWorld = activeNav === 'bridgework-au'
 
   // Clear tooltip whenever sidebar expands
   useEffect(() => {
@@ -269,6 +273,12 @@ export const PortfolioWorkspace: React.FC<PortfolioWorkspaceProps> = ({
         setIsLoveStoryIntroActive(false)
       }
 
+      if (projectId === 'bridgework-au' && activeNav !== 'bridgework-au') {
+        setIsBridgeWorkIntroActive(true)
+      } else if (projectId !== 'bridgework-au') {
+        setIsBridgeWorkIntroActive(false)
+      }
+
       setActiveNav(projectId)
       setActiveChapterId(projectId === 'lovestory' ? 'ls-scene-01' : 'cs-01')
       setCollapsedTooltip(null)
@@ -294,10 +304,15 @@ export const PortfolioWorkspace: React.FC<PortfolioWorkspaceProps> = ({
     setIsLoveStoryIntroActive(false)
   }, [])
 
+  const handleCompleteBridgeWorkIntro = useCallback(() => {
+    setIsBridgeWorkIntroActive(false)
+  }, [])
+
   // Return from Case Study to Resume and restore previous section & scroll position
   const handleBackToResume = useCallback(() => {
     setIsZeroLineBreakActive(false)
     setIsLoveStoryIntroActive(false)
+    setIsBridgeWorkIntroActive(false)
     const saved = savedResumeStateRef.current
     setActiveNav(saved.section)
     setActiveExperienceSub(saved.experienceSub)
@@ -587,6 +602,22 @@ export const PortfolioWorkspace: React.FC<PortfolioWorkspaceProps> = ({
         playIntroOnMount={isLoveStoryIntroActive}
         prefersReducedMotion={prefersReducedMotion}
         onIntroFinished={handleCompleteLoveStoryIntro}
+        onBackToPortfolio={handleBackToResume}
+        onSelectProject={handleOpenProject}
+      />
+    )
+  }
+
+  // Standalone Fullscreen BridgeWork AU Experience Boundary:
+  // Renders outside the Portfolio Workspace shell (.workspace-layout)
+  if (isBridgeWorkWorld && activeProjectData) {
+    return (
+      <BridgeWorkStandalonePage
+        project={activeProjectData}
+        allProjects={t.projects}
+        playIntroOnMount={isBridgeWorkIntroActive}
+        prefersReducedMotion={prefersReducedMotion}
+        onIntroFinished={handleCompleteBridgeWorkIntro}
         onBackToPortfolio={handleBackToResume}
         onSelectProject={handleOpenProject}
       />

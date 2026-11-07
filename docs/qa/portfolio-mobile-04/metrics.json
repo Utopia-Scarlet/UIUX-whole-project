@@ -1,0 +1,532 @@
+{
+  "375x812": {
+    "vw": 375,
+    "scrollWidth": 375,
+    "overflowX": false,
+    "canvas": {
+      "left": 5,
+      "right": 370,
+      "top": 5,
+      "bottom": 807,
+      "width": 365,
+      "height": 802,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "upperRegion": {
+      "left": 22,
+      "right": 353,
+      "top": 100.5,
+      "bottom": 184.5,
+      "width": 331,
+      "height": 84,
+      "fontSize": "32px",
+      "transform": "none"
+    },
+    "jianshuo": {
+      "left": 27.3,
+      "right": 347.7,
+      "top": 100.3,
+      "bottom": 184.7,
+      "width": 320.5,
+      "height": 84.4,
+      "fontSize": "67.87px",
+      "transform": "matrix(1, 0, 0, 1.636, 0, 0)"
+    },
+    "gapBetweenTitleAndPortrait": 9.8,
+    "portrait": {
+      "left": 22,
+      "right": 212,
+      "top": 194.5,
+      "bottom": 462.4,
+      "width": 190,
+      "height": 267.9,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "lowerRightRegion": {
+      "left": 167.6,
+      "right": 353,
+      "top": 282.4,
+      "bottom": 437.4,
+      "width": 185.4,
+      "height": 155,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "liu": {
+      "left": 171.3,
+      "right": 349.3,
+      "top": 282.2,
+      "bottom": 437.6,
+      "width": 178,
+      "height": 155.4,
+      "fontSize": "128.17px",
+      "transform": "matrix(1, 0, 0, 1.638, 0, 0)"
+    },
+    "focusList": {
+      "left": 22,
+      "right": 353,
+      "top": 495.7,
+      "bottom": 578.5,
+      "width": 331,
+      "height": 82.8,
+      "fontSize": "13.5px",
+      "transform": "none"
+    },
+    "introCopy": {
+      "left": 22,
+      "right": 353,
+      "top": 599.5,
+      "bottom": 644.4,
+      "width": 331,
+      "height": 45,
+      "fontSize": "14.8px",
+      "transform": "none"
+    },
+    "cta1": {
+      "left": 22,
+      "right": 182.5,
+      "top": 683,
+      "bottom": 735,
+      "width": 160.5,
+      "height": 52,
+      "fontSize": "14px",
+      "transform": "none"
+    },
+    "cta2": {
+      "left": 192.5,
+      "right": 353,
+      "top": 683,
+      "bottom": 735,
+      "width": 160.5,
+      "height": 52,
+      "fontSize": "14px",
+      "transform": "none"
+    }
+  },
+  "390x844": {
+    "vw": 390,
+    "scrollWidth": 390,
+    "overflowX": false,
+    "canvas": {
+      "left": 5,
+      "right": 385,
+      "top": 5,
+      "bottom": 839,
+      "width": 380,
+      "height": 834,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "upperRegion": {
+      "left": 22,
+      "right": 368,
+      "top": 100.5,
+      "bottom": 188.5,
+      "width": 346,
+      "height": 88,
+      "fontSize": "32px",
+      "transform": "none"
+    },
+    "jianshuo": {
+      "left": 27.5,
+      "right": 362.4,
+      "top": 100.4,
+      "bottom": 188.6,
+      "width": 334.9,
+      "height": 88.2,
+      "fontSize": "71.02px",
+      "transform": "matrix(1, 0, 0, 1.635, 0, 0)"
+    },
+    "gapBetweenTitleAndPortrait": 9.9,
+    "portrait": {
+      "left": 22,
+      "right": 212,
+      "top": 198.5,
+      "bottom": 466.4,
+      "width": 190,
+      "height": 267.9,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "lowerRightRegion": {
+      "left": 174.3,
+      "right": 368,
+      "top": 278.4,
+      "bottom": 441.4,
+      "width": 193.8,
+      "height": 163,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "liu": {
+      "left": 177.8,
+      "right": 364.4,
+      "top": 278.4,
+      "bottom": 441.4,
+      "width": 186.6,
+      "height": 163,
+      "fontSize": "134.4px",
+      "transform": "matrix(1, 0, 0, 1.639, 0, 0)"
+    },
+    "focusList": {
+      "left": 22,
+      "right": 368,
+      "top": 499.7,
+      "bottom": 582.5,
+      "width": 346,
+      "height": 82.8,
+      "fontSize": "13.5px",
+      "transform": "none"
+    },
+    "introCopy": {
+      "left": 22,
+      "right": 368,
+      "top": 603.5,
+      "bottom": 648.4,
+      "width": 346,
+      "height": 45,
+      "fontSize": "14.8px",
+      "transform": "none"
+    },
+    "cta1": {
+      "left": 22,
+      "right": 190,
+      "top": 715,
+      "bottom": 767,
+      "width": 168,
+      "height": 52,
+      "fontSize": "14px",
+      "transform": "none"
+    },
+    "cta2": {
+      "left": 200,
+      "right": 368,
+      "top": 715,
+      "bottom": 767,
+      "width": 168,
+      "height": 52,
+      "fontSize": "14px",
+      "transform": "none"
+    }
+  },
+  "440x956": {
+    "vw": 440,
+    "scrollWidth": 440,
+    "overflowX": false,
+    "canvas": {
+      "left": 5,
+      "right": 435,
+      "top": 5,
+      "bottom": 951,
+      "width": 430,
+      "height": 946,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "upperRegion": {
+      "left": 22,
+      "right": 418,
+      "top": 100.5,
+      "bottom": 201.5,
+      "width": 396,
+      "height": 101,
+      "fontSize": "32px",
+      "transform": "none"
+    },
+    "jianshuo": {
+      "left": 28.3,
+      "right": 411.6,
+      "top": 100.5,
+      "bottom": 201.5,
+      "width": 383.3,
+      "height": 101,
+      "fontSize": "81.54px",
+      "transform": "matrix(1, 0, 0, 1.63, 0, 0)"
+    },
+    "gapBetweenTitleAndPortrait": 10,
+    "portrait": {
+      "left": 22,
+      "right": 235.4,
+      "top": 211.5,
+      "bottom": 512.4,
+      "width": 213.4,
+      "height": 300.9,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "lowerRightRegion": {
+      "left": 196.3,
+      "right": 418,
+      "top": 301.4,
+      "bottom": 487.4,
+      "width": 221.8,
+      "height": 186,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "liu": {
+      "left": 200.3,
+      "right": 413.9,
+      "top": 301.1,
+      "bottom": 487.7,
+      "width": 213.6,
+      "height": 186.5,
+      "fontSize": "153.8px",
+      "transform": "matrix(1, 0, 0, 1.639, 0, 0)"
+    },
+    "focusList": {
+      "left": 22,
+      "right": 418,
+      "top": 545.7,
+      "bottom": 628.5,
+      "width": 396,
+      "height": 82.8,
+      "fontSize": "13.5px",
+      "transform": "none"
+    },
+    "introCopy": {
+      "left": 22,
+      "right": 418,
+      "top": 649.5,
+      "bottom": 694.4,
+      "width": 396,
+      "height": 45,
+      "fontSize": "14.8px",
+      "transform": "none"
+    },
+    "cta1": {
+      "left": 22,
+      "right": 215,
+      "top": 845,
+      "bottom": 897,
+      "width": 193,
+      "height": 52,
+      "fontSize": "14px",
+      "transform": "none"
+    },
+    "cta2": {
+      "left": 225,
+      "right": 418,
+      "top": 845,
+      "bottom": 897,
+      "width": 193,
+      "height": 52,
+      "fontSize": "14px",
+      "transform": "none"
+    }
+  },
+  "768x1024": {
+    "vw": 768,
+    "scrollWidth": 768,
+    "overflowX": false,
+    "canvas": {
+      "left": 5,
+      "right": 763,
+      "top": 5,
+      "bottom": 1019,
+      "width": 758,
+      "height": 1014,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "upperRegion": {
+      "left": 34,
+      "right": 734,
+      "top": 118.5,
+      "bottom": 297.5,
+      "width": 700,
+      "height": 179,
+      "fontSize": "32px",
+      "transform": "none"
+    },
+    "jianshuo": {
+      "left": 45.2,
+      "right": 722.8,
+      "top": 118.8,
+      "bottom": 297.2,
+      "width": 677.6,
+      "height": 178.5,
+      "fontSize": "144.14px",
+      "transform": "matrix(1, 0, 0, 1.629, 0, 0)"
+    },
+    "gapBetweenTitleAndPortrait": 10.3,
+    "portrait": {
+      "left": 34,
+      "right": 309,
+      "top": 307.5,
+      "bottom": 695.3,
+      "width": 275,
+      "height": 387.8,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "lowerRightRegion": {
+      "left": 328,
+      "right": 734,
+      "top": 329.3,
+      "bottom": 670.3,
+      "width": 406,
+      "height": 341,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "liu": {
+      "left": 336.6,
+      "right": 725.4,
+      "top": 329.3,
+      "bottom": 670.3,
+      "width": 388.8,
+      "height": 341,
+      "fontSize": "280px",
+      "transform": "matrix(1, 0, 0, 1.646, 0, 0)"
+    },
+    "focusList": {
+      "left": 34,
+      "right": 734,
+      "top": 728.6,
+      "bottom": 781.8,
+      "width": 700,
+      "height": 53.2,
+      "fontSize": "13.5px",
+      "transform": "none"
+    },
+    "introCopy": {
+      "left": 34,
+      "right": 552.4,
+      "top": 802.8,
+      "bottom": 851.4,
+      "width": 518.4,
+      "height": 48.6,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "cta1": {
+      "left": 34,
+      "right": 259,
+      "top": 907,
+      "bottom": 959,
+      "width": 225,
+      "height": 52,
+      "fontSize": "14px",
+      "transform": "none"
+    },
+    "cta2": {
+      "left": 269,
+      "right": 494,
+      "top": 907,
+      "bottom": 959,
+      "width": 225,
+      "height": 52,
+      "fontSize": "14px",
+      "transform": "none"
+    }
+  },
+  "1440x900": {
+    "vw": 1440,
+    "scrollWidth": 1440,
+    "overflowX": false,
+    "canvas": {
+      "left": 14,
+      "right": 1426,
+      "top": 14,
+      "bottom": 886,
+      "width": 1412,
+      "height": 872,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "upperRegion": {
+      "left": 472.8,
+      "right": 1195,
+      "top": 287.3,
+      "bottom": 383.6,
+      "width": 722.2,
+      "height": 96.3,
+      "fontSize": "32px",
+      "transform": "none"
+    },
+    "jianshuo": {
+      "left": 472.8,
+      "right": 996,
+      "top": 287.3,
+      "bottom": 383.6,
+      "width": 523.2,
+      "height": 96.3,
+      "fontSize": "109.44px",
+      "transform": "none"
+    },
+    "gapBetweenTitleAndPortrait": -120.6,
+    "portrait": {
+      "left": 55,
+      "right": 292.6,
+      "top": 263,
+      "bottom": 598,
+      "width": 237.6,
+      "height": 335,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "lowerRightRegion": {
+      "left": 562.8,
+      "right": 1285,
+      "top": 424.1,
+      "bottom": 573.7,
+      "width": 722.2,
+      "height": 149.5,
+      "fontSize": "16px",
+      "transform": "none"
+    },
+    "liu": {
+      "left": 1032.1,
+      "right": 1270.6,
+      "top": 424.1,
+      "bottom": 573.7,
+      "width": 238.5,
+      "height": 149.5,
+      "fontSize": "169.92px",
+      "transform": "none"
+    },
+    "focusList": {
+      "left": 327.1,
+      "right": 607.1,
+      "top": 337.7,
+      "bottom": 430.7,
+      "width": 280,
+      "height": 93,
+      "fontSize": "13.5px",
+      "transform": "none"
+    },
+    "introCopy": {
+      "left": 327.1,
+      "right": 591.5,
+      "top": 501.2,
+      "bottom": 549.2,
+      "width": 264.3,
+      "height": 48,
+      "fontSize": "15px",
+      "transform": "none"
+    },
+    "cta1": {
+      "left": 0,
+      "right": 0,
+      "top": 0,
+      "bottom": 0,
+      "width": 0,
+      "height": 0,
+      "fontSize": "15px",
+      "transform": "none"
+    },
+    "cta2": {
+      "left": 0,
+      "right": 0,
+      "top": 0,
+      "bottom": 0,
+      "width": 0,
+      "height": 0,
+      "fontSize": "15px",
+      "transform": "none"
+    }
+  }
+}

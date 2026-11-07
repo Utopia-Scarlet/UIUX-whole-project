@@ -176,7 +176,7 @@ a {
 
 @media (max-width: 768px) {
   :root {
-    --frame-inset: 8px;
+    --frame-inset: 5px;
     --canvas-radius: 10px;
   }
 }
